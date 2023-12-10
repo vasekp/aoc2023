@@ -38,14 +38,15 @@ fn main() {
 
     println!("{}", duration(&"AAA".to_owned()));
 
-    let duration = |mut pos| -> usize {
+    let next_z = |pos: &String| -> (usize, String) {
+        let mut pos = pos;
         for (n, dir) in std::iter::repeat_with(|| instructions.chars())
             .flatten()
             .map(|d| match d { 'L' => 0, 'R' => 1, _ => panic!("{d}") })
             .enumerate() {
                 pos = &map.get(pos).unwrap()[dir];
                 if &pos[2..3] == "Z" {
-                    return n + 1;
+                    return (n + 1, pos.clone());
                 }
             }
         panic!();
@@ -53,8 +54,14 @@ fn main() {
 
     let mut total = 1u64;
     for key in map.keys().filter(|k| &k[2..3] == "A") {
-        let dur = duration(key) as u64;
-        total = lcm(total, dur);
+        let (dur, z) = next_z(&key);
+        // check: z reached at instruction string boundary
+        assert!(dur % instructions.len() == 0);
+        // check: the same z next reached with the same period
+        assert!(next_z(&z).0 == dur);
+        assert!(next_z(&z).1 == z);
+        // sufficient conditions for LCM
+        total = lcm(total, dur as u64);
     }
     println!("{total}");
 }
