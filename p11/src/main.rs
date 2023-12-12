@@ -45,12 +45,12 @@ fn main() {
 
     let mut total = 0i64;
     for (x1, y1) in &stars {
-        for (x2, y2) in &stars { // We count each pair twice but this takes few μs so who cares.
-            if (x1, y1) == (x2, y2) { continue; }
+        for (x2, y2) in &stars {
+            if (x1, y1) >= (x2, y2) { continue; }
             let (x1, y1) = (xmap.get(&x1).unwrap(), ymap.get(&y1).unwrap());
             let (x2, y2) = (xmap.get(&x2).unwrap(), ymap.get(&y2).unwrap());
             total += (x2 - x1).abs() + (y2 - y1).abs();
         }
     }
-    println!("{}", total / 2);
+    println!("{}", total);
 }
