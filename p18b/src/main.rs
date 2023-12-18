@@ -1,5 +1,3 @@
-#![feature(iter_intersperse)]
-
 use std::fs::File;
 use std::io::{self, BufRead};
 use std::collections::VecDeque;
@@ -43,28 +41,26 @@ fn main() {
     }
     assert!(pos == (0, 0));
 
-    let mut xs = corners.iter().map(|(x, _)| *x).collect::<Vec<_>>();
+    let mut xs = corners.iter().map(|(x, _)| [*x, x + 1].into_iter()).flatten().collect::<Vec<_>>();
     xs.sort();
     xs.dedup();
-    let mut ys = corners.iter().map(|(_, y)| *y).collect::<Vec<_>>();
+    let mut ys = corners.iter().map(|(_, y)| [*y, y + 1].into_iter()).flatten().collect::<Vec<_>>();
     ys.sort();
     ys.dedup();
 
-    let w = xs.last().unwrap() - xs.first().unwrap() + 1;
-    let h = ys.last().unwrap() - ys.first().unwrap() + 1;
+    let w = xs.last().unwrap() - xs.first().unwrap();
+    let h = ys.last().unwrap() - ys.first().unwrap();
 
     let widths = [0].into_iter()
-        .chain(xs.windows(2).map(|s| s[1] - s[0] - 1))
+        .chain(xs.windows(2).map(|s| s[1] - s[0]))
         .chain([0].into_iter())
-        .intersperse(1)
         .collect::<Vec<_>>();
     let w0 = widths.len();
     //println!("{widths:?}");
 
     let heights = [0].into_iter()
-        .chain(ys.windows(2).map(|s| s[1] - s[0] - 1))
+        .chain(ys.windows(2).map(|s| s[1] - s[0]))
         .chain([0].into_iter())
-        .intersperse(1)
         .collect::<Vec<_>>();
     let h0 = heights.len();
     //println!("{heights:?}");
@@ -72,10 +68,10 @@ fn main() {
     let mut field = std::iter::repeat([0u8].repeat(w0)).take(h0).collect::<Vec<_>>();
     let mut last = (0, 0);
     for pos in corners {
-        let x1 = xs.iter().position(|x| *x == last.0).unwrap() * 2 + 1;
-        let y1 = ys.iter().position(|x| *x == last.1).unwrap() * 2 + 1;
-        let x2 = xs.iter().position(|x| *x == pos.0).unwrap() * 2 + 1;
-        let y2 = ys.iter().position(|x| *x == pos.1).unwrap() * 2 + 1;
+        let x1 = xs.iter().position(|x| *x == last.0 + 1).unwrap();
+        let y1 = ys.iter().position(|x| *x == last.1 + 1).unwrap();
+        let x2 = xs.iter().position(|x| *x == pos.0 + 1).unwrap();
+        let y2 = ys.iter().position(|x| *x == pos.1 + 1).unwrap();
         if x1 == x2 {
             for y in y1..=y2 {
                 field[y][x1] = 1u8;
