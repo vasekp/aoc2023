@@ -1,0 +1,118 @@
+digraph {
+np [label="%np"]
+lv [label="&lv"]
+rt [label="%rt"]
+th [label="%th"]
+gt [label="%gt"]
+zf [label="%zf"]
+sg [label="%sg"]
+vn [label="%vn"]
+qh [label="%qh"]
+rv [label="%rv"]
+br [label="%br"]
+pc [label="%pc"]
+dk [label="%dk"]
+qq [label="%qq"]
+ns [label="%ns"]
+vc [label="&vc"]
+bd [label="%bd"]
+ms [label="%ms"]
+dg [label="%dg"]
+cf [label="%cf"]
+kc [label="%kc"]
+ds [label="%ds"]
+zj [label="%zj"]
+qm [label="%qm"]
+gl [label="%gl"]
+hf [label="%hf"]
+hx [label="%hx"]
+fk [label="%fk"]
+tp [label="%tp"]
+gg [label="%gg"]
+xl [label="%xl"]
+vm [label="%vm"]
+qf [label="%qf"]
+px [label="%px"]
+fs [label="%fs"]
+bc [label="%bc"]
+vr [label="%vr"]
+xv [label="%xv"]
+rq [label="%rq"]
+cq [label="%cq"]
+lz [label="&lz"]
+gr [label="&gr"]
+st [label="&st"]
+tn [label="&tn"]
+xz [label="%xz"]
+hh [label="&hh"]
+db [label="&db"]
+qd [label="%qd"]
+jq [label="%jq"]
+jp [label="%jp"]
+rj [label="%rj"]
+tv [label="%tv"]
+cd [label="%cd"]
+dt [label="&dt"]
+ld [label="%ld"]
+kz [label="%kz"]
+gj [label="%gj"]
+
+np -> vn
+lv -> rx
+rt -> ns
+th -> bc
+gt -> rt, db
+zf -> db, np
+sg -> fs, gr
+vn -> db, zj
+qh -> ms, lz
+rv -> rj, vc
+br -> lz, qh
+pc -> jq, vc
+dk -> xl
+qq -> th, gr
+ns -> xv
+vc -> gl, tv, pc, qd, tn, dg
+bd -> lz, vm
+ms -> lz, bd
+dg -> rv
+cf -> vc
+kc -> cq, db
+ds -> dk, lz
+zj -> kc
+qm -> db, zf
+gl -> qd
+hf -> db
+hx -> px, gr
+fk -> tv, vc
+tp -> ld
+gg -> rq, gr
+xl -> gj, lz
+vm -> lz
+qf -> lz, vr
+px -> qq
+fs -> tp
+bc -> cd, gr
+vr -> xz, lz
+xv -> qm, db
+rq -> gr
+cq -> hf, db
+lz -> dt, dk, qf
+gr -> tp, fs, px, st, th, sg
+st -> lv
+tn -> lv
+xz -> ds, lz
+hh -> lv
+db -> np, gt, zj, ns, hh, rt
+qd -> dg
+jq -> vc, fk
+jp -> cf, vc
+rj -> jp, vc
+tv -> kz
+cd -> gg, gr
+dt -> lv
+ld -> hx, gr
+kz -> gl, vc
+broadcaster -> pc, sg, qf, gt
+gj -> lz, br
+}
