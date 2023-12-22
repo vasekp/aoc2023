@@ -15,9 +15,9 @@ fn main() {
         let nums = nums
             .split(',').map(|x| x.parse().unwrap())
             .collect::<Vec<usize>>();
-        let ways = num_ways_old(&row[..].as_bytes(), &nums[..]);
+        let ways = num_ways_old(row[..].as_bytes(), &nums[..]);
         // Conveniently check the validity of the "new" scheme on all the input we have, not just the total
-        let ways2 = num_ways_new(&row[..].as_bytes(), &nums[..]);
+        let ways2 = num_ways_new(row[..].as_bytes(), &nums[..]);
         assert_eq!(ways, ways2);
         total += ways;
     }
@@ -37,7 +37,7 @@ fn main() {
             .split(',').map(|x| x.parse().unwrap())
             .collect::<Vec<usize>>()
             .repeat(5);
-        let ways = num_ways_new(&row[..].as_bytes(), &nums[..]);
+        let ways = num_ways_new(row[..].as_bytes(), &nums[..]);
         total += ways;
     }
     println!("{total}");

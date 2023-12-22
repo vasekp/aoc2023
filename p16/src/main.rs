@@ -9,7 +9,7 @@ enum Dir {
 use Dir::*;
 
 impl Dir {
-    fn to_int(&self) -> i8 {
+    fn to_int(self) -> i8 {
         match self {
             Up => 0,
             Down => 1,
@@ -18,7 +18,7 @@ impl Dir {
         }
     }
 
-    fn to_tuple(&self) -> (i32, i32) {
+    fn to_tuple(self) -> (i32, i32) {
         match self {
             Up => (0, -1),
             Down => (0, 1),
@@ -41,7 +41,7 @@ impl Dir {
     }
 }
 
-#[derive(Clone)]
+#[derive(Clone, Default)]
 struct Seen(i8);
 
 impl Seen {
@@ -58,11 +58,7 @@ impl Seen {
     }
 }
 
-impl Default for Seen {
-    fn default() -> Seen {
-        Seen(0)
-    }
-}
+
 
 trait Pos {
     fn displace(&self, dir: Dir) -> Self;

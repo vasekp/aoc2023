@@ -88,7 +88,7 @@ fn main() {
     let mut it = io::BufReader::new(file).lines().map(Result::unwrap);
 
     let mut map = HashMap::new();
-    while let Some(line) = it.next() {
+    for line in it.by_ref() {
         if line.is_empty() {
             break;
         }
@@ -98,7 +98,7 @@ fn main() {
         let instr_str = &line[(open + 1)..close];
         let instr = instr_str.split(',').map(|inst| {
             if let Some(colon) = inst.find(':') {
-                let sign_pos = inst.find(&['<', '>']).unwrap();
+                let sign_pos = inst.find(['<', '>']).unwrap();
                 assert!(sign_pos == 1);
                 let name = inst.as_bytes()[0] as char;
                 let sign = inst.as_bytes()[sign_pos] as char;
@@ -132,7 +132,7 @@ fn main() {
         loop {
             for (rule, target) in map.get(wf).unwrap() {
                 if rule.holds_for(&rates) {
-                    wf = &target;
+                    wf = target;
                     break;
                 }
             }

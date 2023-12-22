@@ -13,7 +13,7 @@ enum Dir {
 use Dir::*;
 
 impl Dir {
-    fn to_tuple(&self) -> (i32, i32) {
+    fn to_tuple(self) -> (i32, i32) {
         match self {
             Up => (0, -1),
             Down => (0, 1),
@@ -109,7 +109,7 @@ fn min_cost(field: &Vec<Vec<u8>>, min_run: u8, max_run: u8) -> u32 {
     let mut min = None;
     let mut cmp = |val| {
         if let Some(&val) = val {
-            min = min.and_then(|min| Some(std::cmp::min(min, val))).or(Some(val))
+            min = min.map(|min| std::cmp::min(min, val)).or(Some(val))
         }
     };
     for run in min_run..=max_run {

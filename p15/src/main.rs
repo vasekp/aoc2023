@@ -45,13 +45,13 @@ fn main() {
         let map = &mut maps[hash as usize];
         match cmd {
             b'-' => {
-                if let Some(pos) = map.iter().position(|(s, _)| s == &label) {
+                if let Some(pos) = map.iter().position(|(s, _)| s == label) {
                     map.remove(pos);
                 }
             }
             b'=' => {
                 let val = string[(index + 1)..].parse::<usize>().unwrap();
-                if let Some(pos) = map.iter().position(|(s, _)| s == &label) {
+                if let Some(pos) = map.iter().position(|(s, _)| s == label) {
                     map[pos] = (label.to_owned(), val);
                 } else {
                     map.push((label.to_owned(), val));

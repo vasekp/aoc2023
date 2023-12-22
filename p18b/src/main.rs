@@ -41,10 +41,10 @@ fn main() {
     }
     assert!(pos == (0, 0));
 
-    let mut xs = corners.iter().map(|(x, _)| [*x, x + 1].into_iter()).flatten().collect::<Vec<_>>();
+    let mut xs = corners.iter().flat_map(|(x, _)| [*x, x + 1].into_iter()).collect::<Vec<_>>();
     xs.sort();
     xs.dedup();
-    let mut ys = corners.iter().map(|(_, y)| [*y, y + 1].into_iter()).flatten().collect::<Vec<_>>();
+    let mut ys = corners.iter().flat_map(|(_, y)| [*y, y + 1].into_iter()).collect::<Vec<_>>();
     ys.sort();
     ys.dedup();
 
@@ -53,14 +53,14 @@ fn main() {
 
     let widths = [0].into_iter()
         .chain(xs.windows(2).map(|s| s[1] - s[0]))
-        .chain([0].into_iter())
+        .chain([0])
         .collect::<Vec<_>>();
     let w0 = widths.len();
     //println!("{widths:?}");
 
     let heights = [0].into_iter()
         .chain(ys.windows(2).map(|s| s[1] - s[0]))
-        .chain([0].into_iter())
+        .chain([0])
         .collect::<Vec<_>>();
     let h0 = heights.len();
     //println!("{heights:?}");

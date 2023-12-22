@@ -70,7 +70,7 @@ fn main() {
     for _ in 0..field.len() {
         crossings.push(vec![]);
     }
-    for dir in vec![Right, Left, Up, Down] {
+    for dir in [Right, Left, Up, Down] {
         let mut pos = dir.displace(&start);
         if pos.0 < 0 || pos.0 >= width || pos.1 < 0 || pos.1 >= height {
             continue;
