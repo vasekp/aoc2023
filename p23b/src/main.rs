@@ -59,7 +59,7 @@ fn main() {
             }
             let pos = (x, y);
             //let neighs = vec![field[y - 1][x], field[y][x - 1], field[y][x + 1], field[y + 1][x]];
-            let neighs = vec![adjacent(&pos, Up), adjacent(&pos, Down), adjacent(&pos, Left), adjacent(&pos, Right)];
+            let neighs = [adjacent(&pos, Up), adjacent(&pos, Down), adjacent(&pos, Left), adjacent(&pos, Right)];
             let arrows = neighs.iter().filter(|&&c| "<>^v".find(c as char).is_some()).count();
             let ways = neighs.iter().filter(|&&c| c == b'.').count() + arrows;
             assert!(ways == 2 || arrows >= 2);
@@ -102,10 +102,10 @@ fn main() {
         }
         let mut outs = vec![];
         for dir in [Up, Down, Left, Right] {
-            if adjacent(&node, dir) == b'#' {
+            if adjacent(node, dir) == b'#' {
                 continue;
             }
-            outs.push(follow(&node, dir));
+            outs.push(follow(node, dir));
         }
         graph.insert(*node, outs);
     }
